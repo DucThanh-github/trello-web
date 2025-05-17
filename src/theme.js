@@ -1,4 +1,4 @@
-import { teal, deepOrange, cyan, orange } from '@mui/material/colors'
+// import { teal, deepOrange, cyan, orange } from '@mui/material/colors'
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
 
 // Create a theme instance.
@@ -7,20 +7,20 @@ const theme = extendTheme({
     appBarHeight: '58px',
     appBoardBarHeight: '60px'
   },
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: teal,
-        secondary: deepOrange
-      }
-    },
-    dark: {
-      palette: {
-        primary: cyan,
-        secondary: orange
-      }
-    }
-  },
+  // colorSchemes: {
+  //   light: {
+  //     palette: {
+  //       primary: teal,
+  //       secondary: deepOrange
+  //     }
+  //   },
+  //   dark: {
+  //     palette: {
+  //       primary: cyan,
+  //       secondary: orange
+  //     }
+  //   }
+  // },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
@@ -30,11 +30,11 @@ const theme = extendTheme({
             height: '8px'
           },
           '*::-webkit-scrollbar-thumb': {
-            background: '#bdc3c7',
+            background: '#dfe6e9',
             borderRadius: '4px'
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            background: '#7f8c8d'
+            background: 'white'
           }
         }
       }
@@ -49,16 +49,19 @@ const theme = extendTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: theme.palette.primary.main,
+          // color: theme.palette.primary.main,
           fontSize: '0.875rem',
-          '.MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.primary.main
-          },
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.primary.light
-          },
+          // '.MuiOutlinedInput-notchedOutline': {
+          //   borderColor: 'white'
+          // },
+          // '&:hover .MuiOutlinedInput-notchedOutline': {
+          //   borderColor: theme.palette.primary.light
+          // },
           '& fieldset': {
             borderWidth: '1px !important'
+          },
+          '&:hover fieldset': {
+            borderWidth: '2px !important'
           }
         })
       }
