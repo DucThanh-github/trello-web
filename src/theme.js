@@ -1,11 +1,15 @@
 // import { teal, deepOrange, cyan, orange } from '@mui/material/colors'
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
+const APP_BAR_HEIGHT = '58px'
+const APP_BOARD_BAR_HEIGHT = '60px'
+const APP_CONTENT_HEIGHT = `calc(100vh - ${APP_BAR_HEIGHT} - ${APP_BOARD_BAR_HEIGHT})`
 
 // Create a theme instance.
 const theme = extendTheme({
   trello: {
-    appBarHeight: '58px',
-    appBoardBarHeight: '60px'
+    appBarHeight: APP_BAR_HEIGHT,
+    appBoardBarHeight: APP_BOARD_BAR_HEIGHT,
+    appContentHeight: APP_CONTENT_HEIGHT
   },
   // colorSchemes: {
   //   light: {
@@ -35,7 +39,10 @@ const theme = extendTheme({
           },
           '*::-webkit-scrollbar-thumb:hover': {
             background: 'white'
-          }
+          },
+          '*::-webkit-scrollbar-track': {
+          margin: '0 8px'
+          },
         }
       }
     },
