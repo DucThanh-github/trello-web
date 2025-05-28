@@ -2,7 +2,9 @@ import Box from '@mui/material/Box'
 import Column from './Column/Column'
 import Button from '@mui/material/Button'
 import AddCardIcon from '@mui/icons-material/AddCard'
-function ListColumn() {
+
+
+function ListColumn({ columns }) {
   return (
     <Box
       sx={{
@@ -11,7 +13,10 @@ function ListColumn() {
         overflowX: 'auto'
       }}
     >
-      <Column />
+      {columns.map((column) => (
+        <Column key={column._id} column={column} />
+      ))}
+
       <Button
         sx={{
           height: 'fit-content',

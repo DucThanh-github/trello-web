@@ -10,7 +10,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
-
+import PropTypes from 'prop-types'
+import { capitalizeFirstLetter } from '~/utils/formats'
 const styled = {
   color: 'white',
   borderRadius: 2,
@@ -22,7 +23,7 @@ const styled = {
   }
 }
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -33,7 +34,6 @@ function BoardBar() {
         alignItems: 'center',
         px: 2,
         justifyContent: 'space-between',
-        borderBottom: '1px solid white',
         overflowX: 'auto',
         gap: 2
       }}
@@ -42,7 +42,7 @@ function BoardBar() {
         <Chip
           variant="outlined"
           icon={<DashboardIcon />}
-          label="MERN Stack Board"
+          label={board?.title}
           clickable
           sx={styled}
         />
@@ -50,7 +50,7 @@ function BoardBar() {
         <Chip
           variant="outlined"
           icon={<VpnLockIcon />}
-          label="Public/Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
           sx={styled}
         />
@@ -142,6 +142,10 @@ function BoardBar() {
       </Box>
     </Box>
   )
+}
+
+BoardBar.propTypes = {
+  board: PropTypes.object.isRequired
 }
 
 export default BoardBar
