@@ -16,8 +16,9 @@ import AddCardIcon from '@mui/icons-material/AddCard'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import ListCard from './ListCard/ListCard'
+import { mapOrder } from '~/utils/sorts'
 
-function Column() {
+function Column({ column }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -49,7 +50,7 @@ function Column() {
           }}
         >
           <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-            Column title
+            {column.title}
           </Typography>
           <Button
             id="column-board-actions"
@@ -120,7 +121,7 @@ function Column() {
           </Menu>
         </Box>
 
-        <ListCard />
+        <ListCard cards={mapOrder(column.cards, column.cardOrderIds, '_id')} />
 
         <Box
           sx={{
