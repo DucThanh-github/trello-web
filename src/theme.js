@@ -33,19 +33,19 @@ const theme = extendTheme({
       styleOverrides: {
         body: {
           '*::-webkit-scrollbar': {
-            width: '10px',
-            height: '8px'
+            width: '6px',
+            height: '6px'
           },
           '*::-webkit-scrollbar-thumb': {
             background: '#dfe6e9',
-            borderRadius: '4px'
+            borderRadius: '3px'
           },
           '*::-webkit-scrollbar-thumb:hover': {
             background: 'white'
           },
           '*::-webkit-scrollbar-track': {
-          margin: '0 8px'
-          },
+            margin: '0 8px'
+          }
         }
       }
     },
