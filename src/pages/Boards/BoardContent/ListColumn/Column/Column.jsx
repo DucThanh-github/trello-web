@@ -17,8 +17,30 @@ import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import ListCard from './ListCard/ListCard'
 import { mapOrder } from '~/utils/sorts'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 function Column({ column }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({
+    id: column._id,
+    data: { ...column }
+  })
+
+  const dndKitColumnStyles = {
+    // touchAction: 'none',
+    transform: CSS.Translate.toString(transform),
+    transition,
+    height: '100%',
+    opacity: isDragging ? 0.5 : undefined
+  }
+
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -27,18 +49,24 @@ function Column({ column }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+
   return (
-    <Box
-      sx={{
-        minWidth: '300px',
-        maxWidth: '300px',
-        bgcolor: (theme) =>
-          theme.palette.mode === 'light' ? '#ecf0f1' : '#3c6382',
-        borderRadius: 2,
-        height: 'fit-content'
-      }}
-    >
-      <Box sx={{}}>
+    <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes}>
+      <Box
+        {...listeners}
+        sx={{
+          minWidth: '300px',
+          maxWidth: '300px',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'light' ? '#ecf0f1' : '#3c6382',
+          borderRadius: 2,
+          height: 'fit-content',
+          maxHeight: (theme) =>
+            `calc(${theme.trello.appContentHeight} - ${theme.spacing(5)})`
+        }}
+      >
         {/* Col header */}
         <Box
           sx={{
@@ -121,7 +149,7 @@ function Column({ column }) {
           </Menu>
         </Box>
 
-        <ListCard cards={mapOrder(column.cards, column.cardOrderIds, '_id')} />
+        <ListCard cards={orderedCards} />
 
         <Box
           sx={{
@@ -140,7 +168,7 @@ function Column({ column }) {
           />
         </Box>
       </Box>
-    </Box>
+    </div>
   )
 }
 
